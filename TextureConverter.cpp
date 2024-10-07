@@ -4,17 +4,9 @@ TextureConverter::TextureConverter(){}
 TextureConverter::~TextureConverter(){}
 
 std::wstring TextureConverter::ConvertMultiByteStringToWideString(const std::string& mString) {
-	//ワイド文字列に変換した際の文字数
-	int filePathBufferSize = MultiByteToWideChar(CP_ACP, 0, mString.c_str(), -1, nullptr, 0);
+	std::filesystem::path wString = mString;
 
-	//ワイド文字列
-	std::wstring wString;
-	wString.resize(filePathBufferSize);
-
-	//ワイド文字列に変換
-	MultiByteToWideChar(CP_ACP, 0, mString.c_str(), -1, &wString[0], filePathBufferSize);
-
-	return wString;
+	return wString.wstring();
 }
 
 void TextureConverter::ConvertTextureWICToDDS(const std::string& filePath) {

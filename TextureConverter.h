@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include <stringapiset.h>
+#include <filesystem>
 
 class TextureConverter
 {
