@@ -13,7 +13,11 @@ enum Argument {
 
 int main(int argc, char* argv[]) {
 
-	assert(argc >= NumArgument);
+	if (argc < NumArgument) {
+		//使い方を表示する
+		TextureConverter::OutputUsage();
+		return 0;
+	}
 
 	//Comライブラリの初期化
 	HRESULT hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
@@ -22,8 +26,11 @@ int main(int argc, char* argv[]) {
 	//テクスチャコンバーター
 	TextureConverter converter;
 
+	int numOptions = argc - NumArgument;
+	char** options = argv + NumArgument;
+
 	//テクスチャ変換
-	converter.ConvertTextureWICToDDS(argv[kFilePath]);
+	converter.ConvertTextureWICToDDS(argv[kFilePath], numOptions, options);
 
 	//Comライブラリの終了
 	CoUninitialize();
