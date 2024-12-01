@@ -20,7 +20,7 @@ std::wstring TextureConverter::ConvertMultiByteStringToWideString(const std::str
 }
 
 void TextureConverter::ConvertTextureWICToDDS(const std::string& filePath,
-	int numOptions = 0, char* options[] = nullptr) {
+	int numOptions, char* options[]) {
 
 	//テクスチャファイルを読み込む
 	LoadWICTextureFromFile(filePath);
